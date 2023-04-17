@@ -33,13 +33,13 @@ These exercises will be hosted in another notebook which will be provided sepera
 ### **Tasks**
 
 First we will start with some basic stuff that you just need to run in Cypher that help you get a better understanding of the dataset and the databases.
-These are simple Tasks where you just need to copy-paste the code in the Sandbox, run it and just see the results.
+These are simple tasks where you just need to copy-paste the code in the Sandbox, run it and see the results.
 
 ### **Exercises**
 
 The idea is that, each new step will start with a small example that introduces you to some new syntax and logic in Cypher. At the same time we will try to explore different aspects of the dataset while we are getting acquainted with the new syntax.  
 
-After having understood the example you can move on to the exercise that folows that example. There you will be asked to extract the results that the question is requiring. The exercise will most of the times require to extract some additional value from the example or to reuse the code to extract a diffirent result with the same concept.  
+After having understood the example you can move on to the exercise that follows that example. There you will be asked to extract the results that the question is requiring. The exercise will most of the times require to extract some additional value from the example or to reuse the code to extract a diffirent result with the same concept.  
 
 Once we have learned some cool Cypher tricks, there will be a series of small exercises that would resemble some small Data Analysis steps.
 
@@ -217,7 +217,7 @@ The result should look like the following table:
 └──────────┴───────────────┘
  ```
 
- Notice how the relationship between the provider and claim was not necessary to specify in this example. We would have to specify the relation between nodes if we are only interested in a particular way the two nodes are connected. 
+ Notice that the relationship between the provider and claim was not necessary to be specified in this example. We would have to specify the relation between nodes if we are only interested in a particular way the two nodes are connected. 
 
 
 
@@ -281,15 +281,15 @@ RETURN b, ph, c, pr
 </details>
 
 <br/>
-Lets explore the results in graph form a bit.
+Let's explore the results in graph form a bit.
 Expand one or two nodes.  
-You can reproduce the same result if you match the beneficiary and then expand all the the nodes connected to them. 
+You can reproduce the same result if you match the beneficiary and then expand all the nodes connected to them. 
 
 
 
 ## **3. Exercise : List the top 10 providers with the highest number of claims, the average reimbursement amount per claim and list the fraud flag as well. Order by descending average reimbursement amount per claim.**
 
-One would expect that the providers with the highest average amount per claim are fraudulent. Lets see if that is true.  
+One would expect that the providers with the highest average amount per claim are fraudulent. Let's see if that is true.  
 The result should look something like this:
 ```
 ╒═════════════╤═══════╤══════════════╤═══════════════════════════╕
@@ -336,7 +336,7 @@ As we can see only one of them is fraudulent.
 ```
 
 </details>
-Lets try to reorder the results based on descending count of claims. How does this change the corellation to fraud providers?
+Let's try to reorder the results based on descending count of claims. How does this change the corellation to fraud providers?
 <br/>
 
 Next we will introduce specific relationships.
@@ -367,7 +367,7 @@ The result should look like the following table:
 We can see here that we had to add the relationship as a variable so that we can group by the type of the relationship. 
 What we can see from the results is that the operating physician is the highest charging type of physician.  
 
-Quick question: The average reimbursed amount number is not very readable though. Can you figure out from [this list of functions](https://neo4j.com/docs/cypher-cheat-sheet/current/#functions) a nice function to make the number more readable i.e. to not have so many decimals, like in the table below?
+Quick question: The average reimbursed amount number is not very readable though. Can you figure out from [this list of functions](https://neo4j.com/docs/cypher-cheat-sheet/current/#functions) a nice function to make the number more readable i.e. to not have so many decimals?
 
 <br>
 <details>
@@ -379,9 +379,9 @@ Quick question: The average reimbursed amount number is not very readable though
 There is a lot of math , string and logical functions that can be applied on the node properties.
 </details>
 <br>
-Up to now we have been viewing our results in tabular form much like as with any standard SQL query language. We will now also get acquainted with results in graph form. This way is much more visual, it makes it easier to spot interesting connection and is another benefit of using graph databases.
+Up to now we have been viewing our results in tabular form much like as with any standard SQL query language. We will now also get acquainted with results in graph form. This way is much more visual, and it makes it easier to spot interesting connection, which is another benefit of using graph databases.
 
-Lets look at an example:
+Let's look at an example:
 
 We want to find the operating physicians that are connected to a claim where the reimbursed amount was between 15.000 and 30.000 
 
@@ -392,7 +392,7 @@ return p, r, c
 limit 50
  ```
 
-Lets explore the graph result. **The reason why we can now see the graph result option is because we have returned the nodes and not some node attribute value like "c.attribute_example".** 
+Let's explore the graph result. **The reason why we can now see the graph result option is because we have returned the nodes and not some node attribute value like "c.attribute_example".** 
 
 We can see that some of the results that comprise of only two nodes might also have a relationship where the physician is also attending instead of just operating. Cypher displays more information that might exist between nodes that  satisfy the initial constraints i.e. (Physician) <-[OPERATING]- (Claim). 
 
@@ -435,7 +435,7 @@ limit 5
 
 
 
-## **5. Example  : Lets explore the connections between physicians, claims and benefiaries. We are going to limit the results to 20.**   
+## **5. Example  : Let's explore the connections between physicians, claims and benefiaries. We are going to limit the results to 20.**   
 
 
 ```
@@ -445,7 +445,7 @@ limit 20
 ```
 We can see here how we can query 2nd degree relationships. We could easily expand the chain of nodes as much as we want but that is not always very comprehensible. Let's expand then!
 
-## **5.1 Example : Lets find the beneficiaries that have more than one claim with the same physician and limit the total amount to 200.**  
+## **5.1 Example : Let's find the beneficiaries that have more than one claim with the same physician and limit the total amount to 200.**  
 ```
 match (ph:Physician)<--(c1:Claim)-->(b:Beneficiary)
 match (b)<--(c2:Claim)-->(ph)
@@ -512,11 +512,11 @@ return pr, c, p
 
 Explore the graph! Check out the answer above as well!
 
-Lets expand the idea to physicians and the claims and introduce the  <a href="https://neo4j.com/docs/cypher-cheat-sheet/current/#with" target="_blank">WITH statement</a>. What if there is a physician that had multiple roles in the same claim? That does not sound right... 
+Let's expand the idea to physicians and the claims and introduce the  <a href="https://neo4j.com/docs/cypher-cheat-sheet/current/#with" target="_blank">WITH statement</a>. What if there is a physician that had multiple roles in the same claim? That does not sound right... 
 
 
-## **6. Example : Lets find the physicians that have more than one type of connection to the same claim. Limit the results to 100.**  
-The WITH statement can be basically thought of a temporary RESULT statement. In this case, we can use it to find which physicians have more than one relationship to a claim and filter on that aggregation before we even reach the the result statement. 
+## **6. Example : Let's find the physicians that have more than one type of connection to the same claim. Limit the results to 100.**  
+The WITH statement can be basically thought of a temporary RESULT statement. In this case, we can use it to find which physicians have more than one relationship to a claim and filter on that aggregation before we even reach the result statement. 
 ```
 match (p:Physician)<-[rel]-(c:Claim)
 with p, c, count(*) as  rel_count, collect(type(rel)) as rel_types
@@ -589,9 +589,9 @@ RETURN fraud_inconsistency, total_inconsistency, (fraud_inconsistency*1 / total_
 
 Next we will talk about paths in Cypher. 
 
-## **7. Example : Lets talk paths!** 
+## **7. Example : Let's talk paths!** 
 
-A path in Cypher is a variable that holds exactly what the name suggests. A path between two nodes. That can either be a 1st degree connection or a 100th degree connection. Lets see an example: 
+A path in Cypher is a variable that holds exactly what the name suggests. A path between two nodes. That can either be a 1st degree connection or a 100th degree connection. Let's see an example: 
 
 ```
 match path = ((p:Provider) <-- (c:Claim))
@@ -600,8 +600,8 @@ limit 5
 ```
 
 Paths are very valuable in cypher cause they bring out a lot of information that is otherwise almost impossible to access with SQL.
-Lets look at another example.
-## **7.1 Example : Lets find the shortest path between provider PRV51003 and PRV51023** 
+Let's look at another example.
+## **7.1 Example : Let's find the shortest path between provider PRV51003 and PRV51023** 
 
 Providers are connected in numerous ways. To find the quickest way from one node to another we can use shortestPath.
 Note that we could even provide relationships to consider when looking for the path.
